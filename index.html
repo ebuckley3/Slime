@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peachybbies Slime Name Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #ffe6f2;
+        }
+        #slime-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ff66b2;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff99cc;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff6699;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Peachybbies Slime Name Generator</h1>
+    <button onclick="generateSlimeName()">Generate Slime Name</button>
+    <p id="slime-name"></p>
+
+    <script>
+        // Original Peachybbies-style words
+        const words1 = [
+            "Dreamy", "Fluffy", "Marshmallow", "Cotton", "Cloud", "Boba", "Pudding",
+            "Gummy", "Frosted", "Candy", "Butter", "Unicorn", "Jelly", "Peachy",
+            "Mochi", "Milk", "Honey", "Twinkle", "Glitter", "Sprinkle", "Taffy",
+            "Melon", "Berry", "Whipped", "Magic", "Cupcake", "Lush", "Fizzy",
+            "Fairy", "Cheesecake", "Vanilla", "Choco", "Snow", "Moon", "Bubble"
+        ];
+
+        // Fantasy creatures, places, and mystical terms
+        const words2 = [
+            "Enchanted", "Mermaid", "Dragonling", "Frostwing", "Crystal", "Elven",
+            "Midnight", "Mystic", "Starlight", "Celestial", "Shadow", "Nebula",
+            "Atlantis", "Fable", "Wanderwood", "Everglow", "Griffin", "Fairyland",
+            "Pixie", "Phoenix", "Spellbound", "Runestone", "Magical", "Echo",
+            "Luminara", "Eldoria", "Twilight", "Oblivion", "Sunstone", "Zephyr"
+        ];
+
+        // Moods, vibes, and trendy words
+        const words3 = [
+            "Cozy", "Bliss", "Aesthetic", "Chill", "Ethereal", "Sunset",
+            "Dazed", "Retro", "Kawaii", "Celeste", "Vibe", "Serene",
+            "Pastel", "Lush", "Whimsy", "Breezy", "Eclipse", "Velvet",
+            "Hypnotic", "Mirage", "Doodle", "Stargaze", "Hush", "Shimmer",
+            "Lush", "Tranquil", "Frolic", "Coastal", "Daydream", "Horizon"
+        ];
+
+        function generateSlimeName() {
+            let chosenWords = [
+                words1[Math.floor(Math.random() * words1.length)],
+                words2[Math.floor(Math.random() * words2.length)],
+                words3[Math.floor(Math.random() * words3.length)]
+            ];
+
+            document.getElementById("slime-name").innerText = chosenWords.join(" ");
+        }
+    </script>
+
+</body>
+</html>
