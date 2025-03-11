@@ -52,106 +52,109 @@
             margin: 40px auto;
         }
     </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peachybbies Slime Selector Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #da6ca3;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(199, 120, 199, 0.849);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #070004;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Explore Peachybbies Slime!</h1>
+<div class="container">
+    <h1>Which Slime Should You Play With?</h1>
+    <form id="slimeQuiz">
+        <label>How are you feeling today?</label>
+        <select id="mood">
+            <option value="sad">Sad</option>
+            <option value="energetic">Energetic</option>
+            <option value="calm">Calm</option>
+            <option value="bored">Bored</option>
+        </select>
 
-    <!-- Slime Name Generator -->
-    <div class="section">
-        <h2>Peachybbies Slime Name Generator</h2>
-        <button onclick="generateSlimeName()">Generate Slime Name</button>
-        <p id="slime-name"></p>
-    </div>
+        <label>What texture do you prefer?</label>
+        <select id="texture">
+            <option value="butter">Butter</option>
+            <option value="bingsu">Bingsu</option>
+            <option value="cloud">Cloud</option>
+            <option value="glossy">Glossy</option>
+            <option value="icy">Icy</option>
+        </select>
 
-    <hr> <!-- This adds a line between sections -->
+        <label>Which scent do you prefer?</label>
+        <select id="scent">
+            <option value="fruity">Fruity</option>
+            <option value="cake-like">Cake-like</option>
+            <option value="floral">Floral</option>
+            <option value="candy">Candy</option>
+            <option value="unscented">Unscented</option>
+        </select>
 
-    <!-- Slime Selector Quiz -->
-    <div class="section">
-        <h2>Which Slime Should You Play With?</h2>
-        <form id="slimeQuiz">
-            <label>How are you feeling today?</label>
-            <select id="mood">
-                <option value="relaxing">Relaxing</option>
-                <option value="energetic">Energetic</option>
-                <option value="calm">Calm</option>
-                <option value="bored">Bored</option>
-            </select>
+        <button type="button" onclick="findSlime()">Find My Slime!</button>
+    </form>
 
-            <label>What texture do you prefer?</label>
-            <select id="texture">
-                <option value="butter">Butter</option>
-                <option value="bingsu">Bingsu</option>
-                <option value="cloud">Cloud</option>
-                <option value="glossy">Glossy</option>
-            </select>
+    <p id="result"></p>
+</div>
 
-            <label>Which scent do you prefer?</label>
-            <select id="scent">
-                <option value="fruity">Fruity</option>
-                <option value="bakery">Bakery</option>
-                <option value="floral">Floral</option>
-                <option value="candy">Candy</option>
-                <option value="unscented">Unscented</option>
-            </select>
+<script>
+    function findSlime() {
+        // Get user choices
+        let mood = document.getElementById("mood").value;
+        let texture = document.getElementById("texture").value;
+        let scent = document.getElementById("scent").value;
 
-            <button type="button" onclick="findSlime()">Find My Slime!</button>
-        </form>
+        // Define your slimes
+        let slimes = [
+            { name: "Juicy Tracksuit", mood: "energetic", texture: "icy", scent: "floral" },
+            { name: "Good Luck Charm", mood: "bored", texture: "cloud", scent: "candy" },
+            { name: "Lucky Fox", mood: "calm", texture: "bingsu", scent: "unscented" },
+            { name: "Virtual Pet", mood: "energetic", texture: "glossy", scent: "unscented" },
+            { name: "Fairy Hotsprings", mood: "calm", texture: "glossy", scent: "floral" },
+            { name: "Magic Boba", mood: "sad", texture: "glossy", scent: "fruity" },
+            { name: "Ghosted", mood: "sad", texture: "bingsu", scent: "cake-like" },
+            { name: "Puppy Love", mood: "bored", texture: "cloud", scent: "cake-like" },
+            { name: "Good Vibes Only", mood: "energetic", texture: "butter", scent: "fruity" }
+        ];
 
-        <p id="result"></p>
-    </div>
+        // Find best slime match
+        let matches = slimes.filter(slime => slime.mood === mood || slime.texture === texture || slime.scent === scent);
 
-    <script>
-        // Slime Name Generator Function
-        const words1 = ["Dreamy", "Fluffy", "Marshmallow", "Cotton", "Cloud", "Boba", "Pudding",
-            "Gummy", "Frosted", "Candy", "Butter", "Unicorn", "Jelly", "Peachy",
-            "Mochi", "Milk", "Honey", "Twinkle", "Glitter", "Sprinkle", "Taffy",
-            "Melon", "Berry", "Whipped", "Magic", "Cupcake", "Lush", "Fizzy",
-            "Fairy", "Cheesecake", "Vanilla", "Choco", "Snow", "Moon", "Bubble"];
-        const words2 = ["Enchanted", "Mermaid", "Dragonling", "Frostwing", "Crystal", "Elven",
-            "Midnight", "Mystic", "Starlight", "Celestial", "Shadow", "Nebula",
-            "Atlantis", "Fable", "Wanderwood", "Everglow", "Griffin", "Fairyland",
-            "Pixie", "Phoenix", "Spellbound", "Runestone", "Magical", "Echo",
-            "Luminara", "Eldoria", "Twilight", "Oblivion", "Sunstone", "Zephyr"];
-        const words3 = ["Cozy", "Bliss", "Aesthetic", "Chill", "Ethereal", "Sunset",
-            "Dazed", "Retro", "Kawaii", "Celeste", "Vibe", "Serene",
-            "Pastel", "Lush", "Whimsy", "Breezy", "Eclipse", "Velvet",
-            "Hypnotic", "Mirage", "Doodle", "Stargaze", "Hush", "Shimmer",
-            "Lush", "Tranquil", "Frolic", "Coastal", "Daydream", "Horizon"];
+        // Select a random match
+        let chosenSlime = matches.length > 0 ? matches[Math.floor(Math.random() * matches.length)] : slimes[Math.floor(Math.random() * slimes.length)];
 
-        function generateSlimeName() {
-            let chosenWords = [
-                words1[Math.floor(Math.random() * words1.length)],
-                words2[Math.floor(Math.random() * words2.length)],
-                words3[Math.floor(Math.random() * words3.length)]
-            ];
-            document.getElementById("slime-name").innerText = chosenWords.join(" ");
-        }
-
-        // Slime Selector Quiz Function
-        function findSlime() {
-            let mood = document.getElementById("mood").value;
-            let texture = document.getElementById("texture").value;
-            let scent = document.getElementById("scent").value;
-
-            let slimes = [
-                { name: "Strawberry Mochi", mood: "relaxing", texture: "butter", scent: "fruity" },
-                { name: "Cosmic Crunch", mood: "energetic", texture: "bingsu", scent: "candy" },
-                { name: "Lavender Dream", mood: "calm", texture: "cloud", scent: "floral" },
-                { name: "Vanilla Frosting", mood: "relaxing", texture: "butter", scent: "bakery" },
-                { name: "Blueberry Jelly", mood: "bored", texture: "glossy", scent: "fruity" },
-                { name: "Mint Snowball", mood: "calm", texture: "cloud", scent: "unscented" },
-                { name: "Rainbow Crunch", mood: "energetic", texture: "bingsu", scent: "candy" },
-                { name: "Cherry Cloud", mood: "relaxing", texture: "cloud", scent: "fruity" },
-                { name: "Sugar Cookie", mood: "bored", texture: "butter", scent: "bakery" }
-            ];
-
-            let matches = slimes.filter(slime => slime.mood === mood || slime.texture === texture || slime.scent === scent);
-            let chosenSlime = matches.length > 0 ? matches[Math.floor(Math.random() * matches.length)] : slimes[Math.floor(Math.random() * slimes.length)];
-
-            document.getElementById("result").innerHTML = `🎉 You should play with: <strong>${chosenSlime.name}</strong>! 🎉`;
-        }
-    </script>
+        // Display result
+        document.getElementById("result").innerHTML = `🎉 You should play with: <strong>${chosenSlime.name}</strong>! 🎉`;
+    }
+</script>
 
 </body>
 </html>
+
