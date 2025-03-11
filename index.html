@@ -79,3 +79,107 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slime Selector Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe4e1;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff69b4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Which Slime Should You Play With?</h1>
+    <form id="slimeQuiz">
+        <label>How are you feeling today?</label>
+        <select id="mood">
+            <option value="relaxing">Relaxing</option>
+            <option value="energetic">Energetic</option>
+            <option value="calm">Calm</option>
+            <option value="bored">Bored</option>
+        </select>
+
+        <label>What texture do you prefer?</label>
+        <select id="texture">
+            <option value="butter">Butter</option>
+            <option value="bingsu">Bingsu</option>
+            <option value="cloud">Cloud</option>
+            <option value="glossy">Glossy</option>
+        </select>
+
+        <label>Which scent do you prefer?</label>
+        <select id="scent">
+            <option value="fruity">Fruity</option>
+            <option value="bakery">Bakery</option>
+            <option value="floral">Floral</option>
+            <option value="candy">Candy</option>
+            <option value="unscented">Unscented</option>
+        </select>
+
+        <button type="button" onclick="findSlime()">Find My Slime!</button>
+    </form>
+
+    <p id="result"></p>
+</div>
+
+<script>
+    function findSlime() {
+        // Get user choices
+        let mood = document.getElementById("mood").value;
+        let texture = document.getElementById("texture").value;
+        let scent = document.getElementById("scent").value;
+
+        // Define your slimes
+        let slimes = [
+            { name: "Strawberry Mochi", mood: "relaxing", texture: "butter", scent: "fruity" },
+            { name: "Cosmic Crunch", mood: "energetic", texture: "bingsu", scent: "candy" },
+            { name: "Lavender Dream", mood: "calm", texture: "cloud", scent: "floral" },
+            { name: "Vanilla Frosting", mood: "relaxing", texture: "butter", scent: "bakery" },
+            { name: "Blueberry Jelly", mood: "bored", texture: "glossy", scent: "fruity" },
+            { name: "Mint Snowball", mood: "calm", texture: "cloud", scent: "unscented" },
+            { name: "Rainbow Crunch", mood: "energetic", texture: "bingsu", scent: "candy" },
+            { name: "Cherry Cloud", mood: "relaxing", texture: "cloud", scent: "fruity" },
+            { name: "Sugar Cookie", mood: "bored", texture: "butter", scent: "bakery" }
+        ];
+
+        // Find best slime match
+        let matches = slimes.filter(slime => slime.mood === mood || slime.texture === texture || slime.scent === scent);
+
+        // Select a random match
+        let chosenSlime = matches.length > 0 ? matches[Math.floor(Math.random() * matches.length)] : slimes[Math.floor(Math.random() * slimes.length)];
+
+        // Display result
+        document.getElementById("result").innerHTML = `🎉 You should play with: <strong>${chosenSlime.name}</strong>! 🎉`;
+    }
+</script>
+
+</body>
+</html>
